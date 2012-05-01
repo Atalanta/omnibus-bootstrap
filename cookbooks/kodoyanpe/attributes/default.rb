@@ -1,5 +1,12 @@
 default['kodoyanpe']['pkg_path'] = "http://pkgsrc-cdn-oregon.atalanta-systems.com"
 
+case node['kernel']['machine']
+when /sun/
+  default['kodoyanpe']['binary_kit'] = "pkgsrc-sparc-bootstrap.tar.gz"
+when /i86/
+  default['kodoyanpe']['binary_kit'] = "pkgsrc-i86-bootstrap.tar.gz"
+end
+
 default['kodoyanpe']['pkgsrc_pkgs'] = %w{
   curl-7.25.0.tgz
   db4-4.8.30.tgz
@@ -28,3 +35,16 @@ default['kodoyanpe']['pkgsrc_pkgs'] = %w{
   scmgit-base-1.7.10.tgz
   sqlite3-3.7.11nb1.tgz
 }
+
+default['kodoyanpe']['pkg_share'] = "/export/home/pkgsrc"
+
+default['kodoyanpe']['zone_pool'] = "nfs"
+default['kodoyanpe']['zone_dataset'] = "zones"
+default['kodoyanpe']['zone_mountpoint'] = "/usr/share/zones"
+
+default['kodoyanpe']['master_zone_template'] = nil
+
+default['kodoyanpe']['test_network_interface'] = "bge1"
+default['kodoyanpe']['test_network'] = "10.10.10.0"
+default['kodoyanpe']['test_ip'] = "10.10.10.1"
+default['kodoyanpe']['test_netmask'] = "255.255.255.0"
